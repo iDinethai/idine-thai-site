@@ -8,29 +8,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --green-dark: #1B3A2E;
-      --gold: #D4AF37;
-    }
+    :root { --green-dark: #1B3A2E; --gold: #D4AF37; }
     body { font-family: 'Noto Sans JP', sans-serif; }
     .font-header { font-family: 'Playfair Display', serif; }
     .text-gold { color: var(--gold); }
     .bg-gold { background-color: var(--gold); }
     .bg-green-dark { background-color: var(--green-dark); }
-    .hover\:bg-gold-hover:hover { background-color: #C19C3A; }
-    .hover\:text-gold-hover:hover { color: #C19C3A; }
   </style>
 </head>
-<body class="bg-green-dark text-gray-100 relative">
+<body class="bg-green-dark text-gray-100">
 
   <!-- Header -->
-  <header class="flex items-center justify-between py-6 px-8 bg-transparent z-20">
-    <div class="flex items-center">
-      <img src="IMG_9836.png" alt="iDine Logo" class="h-24 w-auto" />
-      <span class="ml-4 text-3xl text-gold font-header">iDine Thai</span>
+  <header class="flex flex-col md:flex-row items-center justify-between py-4 px-6 bg-transparent z-20">
+    <div class="flex items-center justify-between w-full md:w-auto">
+      <div class="flex items-center">
+        <img src="IMG_9836.png" alt="Logo" class="h-16 w-auto"> 
+        <span class="ml-2 text-2xl md:text-3xl text-gold font-header">iDine Thai</span>
+      </div>
+      <!-- モバイル用 メニューボタン -->
+      <button id="nav-toggle" class="md:hidden text-gold focus:outline-none">
+        <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+      </button>
     </div>
-    <nav class="space-x-6 text-lg">
-      <a href="#" class="hover:text-gold">หน้าแรก</a>
+    <nav id="nav-menu" class="hidden flex-col space-y-4 px-6 py-4 bg-green-dark text-lg md:flex md:flex-row md:space-x-6 md:space-y-0 md:px-0 md:py-0">
+　　　 <a href="#" class="hover:text-gold">หน้าแรก</a>
       <a href="#products" class="hover:text-gold">ดูสินค้า</a>
       <a href="#founder" class="hover:text-gold">ความตั้งใจของผู้ก่อตั้ง</a>
       <a href="#contact" class="hover:text-gold">ติดต่อเรา</a>
@@ -39,19 +42,19 @@
 
   <!-- Hero Section -->
   <section class="relative h-screen overflow-hidden">
-    <img src="LINE_ALBUM_千紀園 松瑞_250421_5.jpg" alt="Hero" class="absolute inset-0 w-full h-full object-cover" />
+    <img src="LINE_ALBUM_千紀園 松瑞_250421_5.jpg" alt="Hero" class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 bg-green-dark bg-opacity-90"></div>
     <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-      <img src="IMG_9836.png" alt="iDine Logo" class="h-48 w-auto mb-6" />
-      <h1 class="text-7xl font-header text-gold mb-4">日常に、本物の日本茶を</h1>
-      <p class="text-2xl text-gray-200 mb-8">เติมความหรูหราให้ชีวิตประจำวัน ด้วยชาญี่ปุ่นแท้ระดับพรีเมียม</p>
-      <a href="#products" class="inline-block bg-gold text-green-dark font-semibold py-3 px-8 rounded-full hover:bg-gold-hover transition">ดูสินค้า</a>
+      <img src="IMG_9836.png" alt="Logo" class="h-48 w-auto mb-4">
+      <h1 class="text-5xl md:text-7xl font-header text-gold mb-4">日常に、本物の日本茶を</h1>
+      <p class="text-xl md:text-2xl text-gray-200 mb-6">เติมความหรูหราให้ชีวิตประจำวัน ด้วยชาญี่ปุ่นแท้ระดับพรีเมียม</p>
+      <a href="#products" class="bg-gold text-green-dark font-semibold py-2 px-6 md:py-3 md:px-8 rounded-full hover:bg-gold-hover transition">ดูสินค้า</a>
     </div>
   </section>
 
   <!-- Product Grid -->
-  <section id="products" class="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-    <!-- 小野園 宇治抹茶缶 30g -->
+  <section id="products" class="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+<!-- 小野園 宇治抹茶缶 30g -->
     <div onclick="openModal('ono')" class="bg-white text-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition cursor-pointer">
       <div class="w-full aspect-square overflow-hidden">
         <img src="32929DEB-0053-41A3-B11E-522DD4A72D5F_1_105_c.jpeg" alt="小野園 宇治抹茶缶 30g" class="object-cover w-full h-full">
@@ -201,22 +204,19 @@
     if (e.target === modal) closeModal();
   });
 </script>
- <!-- Footer -->
+
+  <!-- Footer -->
   <footer id="contact" class="bg-green-dark text-gray-400 text-center py-10">
     <p class="mb-4 text-lg">ติดต่อเรา: <a href="mailto:idineteaforthai@gmail.com" class="hover:text-gold">idineteaforthai@gmail.com</a></p>
     <div class="flex justify-center items-center space-x-6 mb-6">
-      <!-- Shopee Text Link -->
-      <a href="https://shopee.co.th/idinetea.th?entryPoint=ShopBySearch&searchKeyword=idine%20tea" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-hover transition">Shopee</a>
-     <!-- Instagram Icon -->
+      <a href="https://shopee.co.th/idinetea.th" target="_blank" class="text-gold hover:text-gold-hover">Shopee</a>
       <a href="https://www.instagram.com/idineteathailand/" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-hover transition">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-8 w-8">
           <path d="M7.75 2h8.5C19.202 2 22 4.798 22 8.25v8.5C22 19.202 19.202 22 16.25 22h-8.5C4.798 22 2 19.202 2 16.25v-8.5C2 4.798 4.798 2 7.75 2zm0 1.5C5.679 3.5 4 5.179 4 7.25v8.5c0 2.071 1.679 3.75 3.75 3.75h8.5c2.071 0 3.75-1.679 3.75-3.75v-8.5c0-2.071-1.679-3.75-3.75-3.75h-8.5z"/>
           <path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 1.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7z"/>
           <circle cx="17.5" cy="6.5" r="1.5"/>
         </svg>
-      </a>      
-      <!-- Facebook Icon -->
-      <a href="https://www.facebook.com/profile.php?id=61575491495244" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-hover transform hover:scale-110 transition">
+      </a>         <a href="https://www.facebook.com/profile.php?id=61575491495244" target="_blank" class="text-gold hover:text-gold-hover transform hover:scale-110 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-current" viewBox="0 0 24 24">
           <path d="M22 12a10 10 0 10-11.5 9.874v-6.987h-2.227v-2.887h2.227V9.845c0-2.202 1.312-3.415 3.324-3.415.963 0 1.977.172 1.977.172v2.174h-1.118c-1.1 0-1.444.684-1.444 1.386v1.664h2.458l-.393 2.887h-2.065v6.987A10 10 0 0022 12z"/>
         </svg>
@@ -224,5 +224,13 @@
     </div>
     <p class="mt-6 text-sm">© 2025 iDine. All rights reserved.</p>
   </footer>
+
+  <script>
+    // モバイルメニュー切り替え
+    document.getElementById('nav-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('nav-menu');
+      menu.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
